@@ -19,6 +19,15 @@ module.exports = {
       res.send(user);
     });
   },
+  detail: function (req, res, next) {
+    models.user.find({_id: req.params.userId}).exec((err, user) => {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.send(user);
+    });
+  },
   deleteUser: function(req, res, next) {
     models.user.remove({
         _id: req.params.userId
