@@ -19,8 +19,10 @@ module.exports = {
       res.send(user);
     });
   },
-  detail: function (req, res, next) {
-    models.user.find({_id: req.params.userId}).exec((err, user) => {
+  detail: function(req, res, next) {
+    models.user.find({
+      _id: req.params.userId
+    }).exec((err, user) => {
       if (err) {
         res.send(err);
         return;
@@ -41,8 +43,6 @@ module.exports = {
       });
   },
   updateUser: function(req, res, next) {
-    console.log(req.params.userId);
-    console.log(req.body);
     models.user.update({
         _id: req.params.userId
       }, req.body)
@@ -53,5 +53,19 @@ module.exports = {
         };
         res.send(result);
       });
+  },
+  login: function(req, res, next) {
+    var user = {
+      username: req.body.username,
+      password: req.body.password,
+    };
+    models.user.find(user)
+      .exec((err, result) => {
+        if (err) {
+          res.send(err);
+          return;
+        };
+        res.send(result);
+      })
   }
 }
