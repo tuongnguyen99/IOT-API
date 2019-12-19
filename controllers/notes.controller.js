@@ -1,16 +1,8 @@
 var models = require('../models/db.models');
 
 module.exports = {
-  getNote: function(req, res, next) {
-    models.note.find().exec((err, notes) => {
-      if (err) {
-        res.send(err);
-        return;
-      };
-      res.send(notes);
-    });
-  },
-  addNote: function(req, res, next) {
+  add: function(req, res, next) {
+    console.log(req.body);
     models.note.create(req.body, (err, note) => {
       if (err) {
         res.send(err);
@@ -19,16 +11,7 @@ module.exports = {
       res.send(note);
     });
   },
-  detail: function (req, res, next) {
-    models.note.find({_id: req.params.noteId}).exec((err, note) => {
-      if (err) {
-        res.send(err);
-        return;
-      }
-      res.send(note);
-    });
-  },
-  deleteNote: function(req, res, next) {
+  delete: function(req, res, next) {
     models.note.remove({
         _id: req.params.noteId
       })
@@ -40,7 +23,7 @@ module.exports = {
         res.send(result);
       });
   },
-  updateNote: function(req, res, next) {
+  update: function(req, res, next) {
     console.log(req.params.userId);
     console.log(req.body);
     models.note.update({
@@ -53,5 +36,16 @@ module.exports = {
         };
         res.send(result);
       });
-  }
+  },
+  get: function(req, res, next) {
+    models.note.find({
+      userId: req.params.userId
+    }).exec((err, notes) => {
+      if (err) {
+        res.send(err);
+        return
+      }
+      res.send(notes);
+    });
+  },
 }

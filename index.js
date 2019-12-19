@@ -11,8 +11,8 @@ var app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
-app.use('/users', userRoute);
-app.use('/notes', noteRoute);
+app.use('/user', userRoute);
+app.use('/note', noteRoute);
 
 app.listen(port, () => {
   console.log('server listeing on port ' + port);

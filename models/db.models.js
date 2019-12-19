@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const noteSchema = new mongoose.Schema({
+  userId: String,
   title: String,
   content: String,
   criticalLevel: String,

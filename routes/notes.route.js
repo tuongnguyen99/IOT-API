@@ -2,10 +2,9 @@ const express = require('express');
 const controller = require('../controllers/notes.controller');
 var router = express.Router();
 
-router.get('/', controller.getNote);
-router.post('/', controller.addNote);
-router.get('/:noteId', controller.detail);
-router.put('/:noteId', controller.updateNote);
-router.delete('/:noteId', controller.deleteNote);
+router.post('/add', controller.add);
+router.get('/list/:userId', controller.get);
+router.put('/update/:noteId', controller.update);
+router.delete('/delete/:noteId', controller.delete);
 
 module.exports = router;
