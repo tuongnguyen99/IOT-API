@@ -43,9 +43,20 @@ module.exports = {
     }).exec((err, notes) => {
       if (err) {
         res.send(err);
-        return
+        return;
       }
       res.send(notes);
     });
   },
+  detail: function(req, res, next) {
+    models.note.find({
+      _id: req.params.Id
+    }).exec((err, note) => {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.send(note[0]);
+    });
+  }
 }
