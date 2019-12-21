@@ -2,7 +2,6 @@ var models = require('../models/db.models');
 
 module.exports = {
   add: function(req, res, next) {
-    console.log(req.body);
     models.note.create(req.body, (err, note) => {
       if (err) {
         res.send(err);
@@ -24,8 +23,6 @@ module.exports = {
       });
   },
   update: function(req, res, next) {
-    console.log(req.params.userId);
-    console.log(req.body);
     models.note.update({
         _id: req.params.noteId
       }, req.body)

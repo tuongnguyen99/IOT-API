@@ -9,12 +9,12 @@ const port = process.env.PORT;
 
 var app = express();
 
-app.use(auth404);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/user', userRoute);
 app.use('/note', noteRoute);
+app.use(auth404);
 
 app.listen(port, () => {
-  console.log('server listeing on port ' + port);
+  console.log('server listening on port ' + port);
 });
